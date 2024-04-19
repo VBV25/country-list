@@ -1,0 +1,46 @@
+@import "./fonts.scss";
+@import "./variables.scss";
+
+// @import "./components/UI/button-popup.scss";
+// @import "./components/popup-todo-list.scss";
+// @import "./page/_auth.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0px;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(234, 234, 234, 0.233);
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(47, 47, 47, 0.161);
+  border-radius: 20px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+  background-color: var(--background-color);
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--text-color);
+}
