@@ -1,6 +1,8 @@
 <template>
   <div class="card-mini" v-for="country in countriesList" :key="country.alpha3Code" @click="changePage(country)">
-    <div class="card-mini__img-wrapper" :style="{ backgroundImage: `url(${country.flag})` }"></div>
+    <div class="card-mini__img-wrapper">
+      <img class="card-mini__img" :src="country.flags.png" alt="flag" />
+    </div>
     <h2 class="card-mini__title">{{ country.name }}</h2>
     <div class="card-mini__info">
       <p class="card-mini__text"><b>Population:</b> {{ country.population }}</p>
@@ -25,7 +27,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      rewriteCurrentCountry: 'rewriteCurrentCountry'
+      rewriteCurrentCountry: 'rewriteCurrentCountry',
     }),
     changePage(country) {
       this.rewriteCurrentCountry(country);
@@ -58,10 +60,11 @@ $paddingLeft: 20px;
     align-items: center;
     justify-content: center;
     border: 1px solid rgb(231, 231, 231);
+  }
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  &__img {
+    width: 100%;
+    height: 100%;
   }
 
   &__title {

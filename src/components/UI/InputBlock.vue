@@ -1,46 +1,56 @@
 <template>
-    <input :value="modelValue" @input="updateInput" class="input" :type="typeInput">
+  <input :value="modelValue" @input="updateInput" class="input" :type="typeInput" />
 </template>
 
 <script>
 export default {
-    name: 'input-block',
-    props: {
-        typeInput: {
-            type: String,
-            required: true,
-        },
-        modelValue: {
-            type: [String, Number]
-        }
+  name: 'input-block',
+  props: {
+    typeInput: {
+      type: String,
+      required: true,
     },
-    data() {
-        return {};
+    modelValue: {
+      type: [String, Number],
     },
-    methods: {
-        updateInput(event) {
-            this.$emit('update:modelValue', event.target.value)
-        }
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    updateInput(event) {
+      this.$emit('update:modelValue', event.target.value);
     },
+  },
 };
 </script>
 
-<style scoped type='scss'>
+<style scoped type="scss">
 .input {
-    width: 100%;
-    max-width: 480px;
-    height: 56px;
-    border-radius: 5px;
+  width: 100%;
+  max-width: 480px;
+  height: 56px;
+  padding-left: 75px;
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  outline: none;
 
-    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
-    border: unset;
+  background: url('@/assets/img/search.svg');
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: 32px center;
 
-    &::placeholder {
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 143%;
-        color: #848484;
-    }
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: var(--input-color);
+
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
 }
 </style>

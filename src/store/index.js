@@ -35,6 +35,7 @@ export default createStore({
         const response = await axios.get('./data.json');
         commit('changeListCountries', response.data);
       } catch (error) {
+        console.log(error);
         commit('changeError', error);
       }
     },
