@@ -1,5 +1,5 @@
 <template>
-  <div class="card-mini">
+  <div class="card-mini" v-for="country in countriesList" :key="country.alpha3Code" @click="changePage(country)">
     <div class="card-mini__img-wrapper" :style="{ backgroundImage: `url(${country.flag})` }"></div>
     <h2 class="card-mini__title">{{ country.name }}</h2>
     <div class="card-mini__info">
@@ -11,17 +11,26 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  name: '',
-  components: {},
+  name: 'card-mini',
   props: {
-    country: {
-      type: Object,
-      default: () => {},
+    countriesList: {
+      type: Array,
     },
   },
   data() {
     return {};
+  },
+  methods: {
+    ...mapActions({
+      rewriteCurrentCountry: 'rewriteCurrentCountry'
+    }),
+    changePage(country) {
+      this.rewriteCurrentCountry(country);
+      this.$router.push('/country-information');
+    },
   },
 };
 </script>
@@ -48,7 +57,7 @@ $paddingLeft: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid rgb(231, 231, 231);
+    border: 1px solid rgb(231, 231, 231);
 
     background-size: cover;
     background-position: center;

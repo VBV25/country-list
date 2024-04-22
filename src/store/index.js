@@ -8,10 +8,14 @@ export default createStore({
     error: '',
   },
   getters: {
+    readError: (state) => state.error,
     readCountriesList: (state) => state.countriesList,
     readCurrentCountry: (state) => state.currentCountry,
   },
   mutations: {
+    changeError(state, newError) {
+      state.error = newError;
+    },
     changeListCountries(state, newCountriesList) {
       state.countriesList = newCountriesList;
     },
@@ -31,9 +35,8 @@ export default createStore({
         const response = await axios.get('./data.json');
         commit('changeListCountries', response.data);
       } catch (error) {
-        console.error(error);
+        commit('changeError', error);
       }
     },
   },
-  modules: {},
 });
