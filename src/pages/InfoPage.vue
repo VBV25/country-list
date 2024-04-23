@@ -9,7 +9,9 @@
     </section>
     <section class="main__info-container info">
       <div class="info__flag">
-        <img class="info__flag-img" :src="this.readCurrentCountry.flags.png ? readCurrentCountry.flags.png : readCurrentCountry.flag" alt="flag" />
+        <img class="info__flag-img"
+          :src="this.readCurrentCountry.flags.png ? readCurrentCountry.flags.png : readCurrentCountry.flag"
+          alt="flag" />
       </div>
       <div class="info__text-container">
         <h2 class="info__title">{{ readCurrentCountry.name }}</h2>
@@ -80,7 +82,6 @@ export default {
 
     searchBorderCountries() {
       let arr = [];
-      console.log(this.readCurrentCountry);
       if (!this.readCurrentCountry.borders) return;
       this.readCurrentCountry.borders.forEach((element) => {
         let borderCountry = this.readCountriesList.find((country) => country.alpha3Code.toLowerCase().includes(element.toLowerCase()));
@@ -105,13 +106,13 @@ export default {
   padding: 24px 16px;
 
   &__navigation {
-    margin-bottom: 90px;
+    margin-bottom: 64px;
   }
 
   &__navigation-btn {
     border-radius: 6px;
-    width: 136px;
-    height: 40px;
+    width: 104px;
+    height: 32px;
     box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.29);
     background: var(--background-color);
     border: none;
@@ -123,7 +124,7 @@ export default {
 
     font-family: var(--font-family);
     font-weight: 300;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 125%;
     color: var(--black-color);
   }
@@ -138,7 +139,7 @@ export default {
   grid-template-columns: 1fr;
   justify-items: center;
   align-items: center;
-  gap: 120px;
+  gap: 50px;
 
   &__text-container {
     display: flex;
@@ -146,10 +147,13 @@ export default {
     justify-content: center;
   }
 
+  $widthFlag: 100%;
+
   &__flag {
-    width: 320px;
-    height: 229px;
+    width: 100%;
+    height: calc($widthFlag / 0.9);
     border-radius: 10px;
+    overflow: hidden;
     box-shadow: 0 0 14px 4px rgba(0, 0, 0, 0.03);
     background: var(--input-color);
   }
@@ -160,11 +164,15 @@ export default {
   }
 
   &__title {
-    margin-bottom: 28px;
+    margin-bottom: 30px;
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--elements-color);
   }
 
   &__lists-wrapper {
-    margin-bottom: 68px;
+    margin-bottom: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -176,6 +184,7 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    row-gap: 10px;
   }
 
   &__border-countries-title {
@@ -202,18 +211,67 @@ export default {
     color: var(--elements-color);
   }
 }
+
+@media (min-width: 420px) {
+  .main {
+    &__navigation-btn {
+      font-size: 16px;
+    }
+  }
+
+  .info {
+    &__flag {
+      width: 320px;
+      height: 229px;
+    }
+
+    &__flag-img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__title {
+      font-size: 32px;
+    }
+  }
+}
+
+
 @media (min-width: 700px) {
+  .main {
+    &__navigation {
+      margin-bottom: 50px;
+    }
+
+    &__navigation-btn {
+      width: 136px;
+      height: 40px;
+    }
+
+    &__lists-wrapper {
+      margin-bottom: 68px;
+    }
+
+  }
+
   .info {
     grid-template-columns: max-content 1fr;
-    gap: 120px;
+    gap: 70px;
   }
 }
 
 @media (min-width: 1008px) {
   .main {
-    padding: 48px 80px;
+    padding: 48px 50px;
+
+    &__navigation {
+      margin-bottom: 79px;
+    }
   }
+
   .info {
+    gap: 90px;
+
     &__flag {
       width: 560px;
       height: 401px;
@@ -221,6 +279,14 @@ export default {
       box-shadow: 0 0 14px 4px rgba(0, 0, 0, 0.03);
       background: var(--input-color);
     }
+  }
+}
+
+@media (min-width: 1100px) {
+  .main {
+    padding: 48px 80px;}
+  .info {
+    gap: 120px;
   }
 }
 
